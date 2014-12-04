@@ -1,0 +1,3 @@
+mushkin_vitforms_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MushkinVitformsBundle:Default:index }

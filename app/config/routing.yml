@@ -1,0 +1,7 @@
+mushkin_vitforms:
+    resource: "@MushkinVitformsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation

@@ -1,0 +1,4 @@
+services:
+#    mushkin_vitforms.example:
+#        class: Mushkin\VitformsBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
