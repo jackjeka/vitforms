@@ -1,0 +1,12 @@
+{% extends "MushkinVitformsBundle:Default:index.html.twig" %}
+
+{% block forms %}
+    <p>Добавление нового умения:</p>
+    <div class="col-md-12">
+        <form role="form" method="post">
+        {{ form_widget(form) }}
+        </form>
+        <br>
+         <a href="{{ path('mushkin_vitforms_homepage') }}">скрыть</a>
+    </div>
+{% endblock %}

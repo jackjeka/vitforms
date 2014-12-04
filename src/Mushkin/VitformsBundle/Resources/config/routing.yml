@@ -1,3 +1,7 @@
 mushkin_vitforms_homepage:
-    path:     /hello/{name}
+    path:     /
     defaults: { _controller: MushkinVitformsBundle:Default:index }
+
+AddSkill:
+    path:     /AddSkill
+    defaults: { _controller: MushkinVitformsBundle:Default:AddSkill }
