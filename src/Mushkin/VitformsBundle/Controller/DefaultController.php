@@ -19,18 +19,25 @@ class DefaultController extends Controller
 
     public function AddSkillAction(Request $request)
     {
-        $user = $this->getDoctrine()->getManager()
-            ->getRepository('MushkinVitformsBundle:User')->findOneBy([]);
-
         $skill = new Skill();
-        $form = $this->createForm(new SkillType($user), $skill);
+        $users = $this->getAllUsers();
+        $form = $this->createForm(new SkillType($users), $skill);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $user->addSkill($skill);
-            $this->getDoctrine()->getManager()->persist($skill);
-            $this->getDoctrine()->getManager()->persist($user);
+
+            $users2 = $form->get('SkillUser')->getData();
+            foreach ($users2 as $user){
+                $user_obj = $this->getDoctrine()->getManager()
+                    ->getRepository('MushkinVitformsBundle:User')->findOneById($users[$user]);
+
+                $user_obj->addSkill($skill);
+                $this->getDoctrine()->getManager()->persist($user_obj);
+                $skill->addSkillUser($user_obj);
+                $this->getDoctrine()->getManager()->persist($skill);
+            }
+
             $this->getDoctrine()->getManager()->flush();
             return $this->redirect($this->generateUrl('mushkin_vitforms_homepage'));
     }

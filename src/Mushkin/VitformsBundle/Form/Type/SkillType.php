@@ -5,14 +5,15 @@ use Mushkin\VitformsBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class SkillType extends AbstractType
 {
-    protected $user;
+    protected $users;
 
-    public function __construct(User $user)
+    public function __construct(Array $users)
     {
-        $this->user = $user;
+        $this->users = $users;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -20,12 +21,19 @@ class SkillType extends AbstractType
      $builder
         ->add('Number')
         ->add('Description')
-        ->add('SkillUsers', 'entity', [
+/*        ->add('SkillUsers', 'entity', [
             'mapped' => false,
             'disabled' => true,
-            'data' => $this->user,
+            'data' => $this->users,
             'class' => 'Mushkin\VitformsBundle\Entity\User'
         ])
+*/
+        ->add('SkillUser', 'choice', [
+                'mapped' => false,
+                'choices'=> $this->users,
+                'expanded' => true,
+                'multiple' => true,
+            ])
         ->add('Сохранить', 'submit');
     }
 

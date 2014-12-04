@@ -21,14 +21,29 @@ class LoadData implements FixtureInterface
             ->setsecondName('Васечкин')
             ->setage(30)
         ;
+        $User2 = new User();
+        $User2
+            ->setName('петя')
+            ->setsecondName('Петечкин')
+            ->setage(30)
+        ;
+
         $Skill = new Skill();
         $Skill
             ->setNumber('Умение №1')
             ->setDescription('Капать');
+
         $Skill->addskillUser($User);
-        $User->addskill($Skill);
         $manager->persist($Skill);
+
+        $Skill->addskillUser($User2);
+        $manager->persist($Skill);
+
+        $User->addskill($Skill);
+        $User2->addskill($Skill);
+
         $manager->persist($User);
+        $manager->persist($User2);
 
         $Skill2 = new Skill();
         $Skill2
