@@ -193,4 +193,9 @@ class Skill
     {
         return $this->skillUsers;
     }
+
+    public function __toString()
+    {
+        return $this->getNumber();
+    }
 }

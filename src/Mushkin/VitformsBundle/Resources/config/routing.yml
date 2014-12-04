@@ -5,3 +5,7 @@ mushkin_vitforms_homepage:
 AddSkill:
     path:     /AddSkill
     defaults: { _controller: MushkinVitformsBundle:Default:AddSkill }
+
+AddUser:
+    path:     /AddUser
+    defaults: { _controller: MushkinVitformsBundle:Default:AddUser }
