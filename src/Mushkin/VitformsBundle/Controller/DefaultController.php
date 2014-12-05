@@ -21,24 +21,12 @@ class DefaultController extends Controller
     public function AddUserAction(Request $request)
     {
         $user = new user();
-        $Skills = $this->getAllSkills();
-        $form = $this->createForm(new UserType($Skills), $user);
+        $form = $this->createForm(new UserType(), $user);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
-            $skills2 = $form->get('Skills')->getData();
-            foreach ($skills2 as $skill){
-                $skill_obj = $this->getDoctrine()->getManager()
-                    ->getRepository('MushkinVitformsBundle:Skill')->findOneById($Skills[$skill]);
-
-                $skill_obj->addSkillUser($user);
-                $this->getDoctrine()->getManager()->persist($skill_obj);
-                $user->addSkill($skill_obj);
-                $this->getDoctrine()->getManager()->persist($user);
-            }
-
+            $this->getDoctrine()->getManager()->persist($user);
             $this->getDoctrine()->getManager()->flush();
             return $this->redirect($this->generateUrl('mushkin_vitforms_homepage'));
         }
@@ -54,24 +42,12 @@ class DefaultController extends Controller
     public function AddSkillAction(Request $request)
     {
         $skill = new Skill();
-        $users = $this->getAllUsers();
-        $form = $this->createForm(new SkillType($users), $skill);
+        $form = $this->createForm(new SkillType(), $skill);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
-            $users2 = $form->get('SkillUser')->getData();
-            foreach ($users2 as $user){
-                $user_obj = $this->getDoctrine()->getManager()
-                    ->getRepository('MushkinVitformsBundle:User')->findOneById($users[$user]);
-
-                $user_obj->addSkill($skill);
-                $this->getDoctrine()->getManager()->persist($user_obj);
-                $skill->addSkillUser($user_obj);
-                $this->getDoctrine()->getManager()->persist($skill);
-            }
-
+            $this->getDoctrine()->getManager()->persist($skill);
             $this->getDoctrine()->getManager()->flush();
             return $this->redirect($this->generateUrl('mushkin_vitforms_homepage'));
     }

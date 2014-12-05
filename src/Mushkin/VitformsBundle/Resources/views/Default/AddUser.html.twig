@@ -3,9 +3,20 @@
 {% block forms %}
     <p>Добавление нового работника:</p>
     <div class="col-md-12">
-        <form role="form" method="post">
-        {{ form_widget(form) }}
-        </form>
+        {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.secondName) }}
+        {{ form_row(form.age) }}
+
+        <h3>Умения:</h3>
+        <ul class="skills">
+            {% for skillfield in form.skills %}
+                <li>{{ form_row(skillfield) }}</li>
+            {% endfor %}
+        </ul>
+
+        {{ form_end(form) }}
+
         <br>
          <a href="{{ path('mushkin_vitforms_homepage') }}">скрыть</a>
     </div>
