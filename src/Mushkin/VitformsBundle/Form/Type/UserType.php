@@ -13,10 +13,19 @@ class UserType extends AbstractType
         ->add('name')
          ->add('secondName')
          ->add('age')
-        ->add('skills', null, array(
+/*        ->add('skills', null, array(
             'expanded' => "true",
             "multiple" => "true"))
-         ->add('Сохранить', 'submit');
+ */
+        ->add('skills', 'collection', array(
+                'type' => new SkillType(),
+                'allow_add'    => true,
+                'prototype' => true,
+                'by_reference' => false,
+                'allow_delete' => true,
+                ))
+         ->add('save', 'submit', array('label' => 'Create'));
+
     }
 
     public function getName()

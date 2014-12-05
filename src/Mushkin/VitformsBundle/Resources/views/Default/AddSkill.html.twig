@@ -3,16 +3,17 @@
 {% block forms %}
     <p>Добавление нового умения:</p>
     <div class="col-md-12">
-
-    {{ form_row(form.number) }}
-    {{ form_row(form.description) }}
+        <form role="form" method="post">
+        {{ form_row(form.number) }}
+        {{ form_row(form.description) }}
         <h3>Работники:</h3>
         <ul class="skillUsers">
             {% for userfield in form.skillUsers %}
-                <li>{{ form_row(userfield.name) }}</li>
+                <li>{{ form_row(userfield) }}</li>
             {% endfor %}
         </ul>
-
+        <button type="submit" class="btn btn-default">Сохранить</button>
+            </form>
         <br>
          <a href="{{ path('mushkin_vitforms_homepage') }}">скрыть</a>
     </div>

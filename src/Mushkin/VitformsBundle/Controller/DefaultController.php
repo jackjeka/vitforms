@@ -21,6 +21,9 @@ class DefaultController extends Controller
     public function AddUserAction(Request $request)
     {
         $user = new user();
+        $skill = $this->getDoctrine()->getManager()->getRepository('MushkinVitformsBundle:Skill')
+                ->find('1');
+        $user->addSkill($skill);
         $form = $this->createForm(new UserType(), $user);
 
         $form->handleRequest($request);
@@ -42,6 +45,10 @@ class DefaultController extends Controller
     public function AddSkillAction(Request $request)
     {
         $skill = new Skill();
+        $user = $this->getDoctrine()->getManager()
+            ->getRepository('MushkinVitformsBundle:User')->findOneById('1');
+        $skill->addSkillUser($user);
+
         $form = $this->createForm(new SkillType(), $skill);
 
         $form->handleRequest($request);

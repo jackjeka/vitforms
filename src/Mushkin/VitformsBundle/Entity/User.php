@@ -57,7 +57,7 @@ class User
     private $deletedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Skill", inversedBy="skillUsers")
+     * @ORM\ManyToMany(targetEntity="Skill", inversedBy="skillUsers", cascade={"persist"})
      * @ORM\JoinTable(name="user_skill")
      */
     private $skills;

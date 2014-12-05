@@ -12,10 +12,10 @@ class SkillType extends AbstractType
         $builder
             ->add('number')
             ->add('description')
-            ->add('skillUsers', 'collection', array(
+/*            ->add('skillUsers', 'collection', array(
                 'type' => new UserType(),
-            ))
-            ->add('Сохранить', 'submit');
+            ))*/
+        ;
     }
 
         public function getName()
