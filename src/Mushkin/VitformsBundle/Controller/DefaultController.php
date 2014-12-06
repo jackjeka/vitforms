@@ -21,9 +21,8 @@ class DefaultController extends Controller
     public function AddUserAction(Request $request)
     {
         $user = new user();
-        $skill = $this->getDoctrine()->getManager()->getRepository('MushkinVitformsBundle:Skill')
-                ->find('1');
-        $user->addSkill($skill);
+//        $skill = $this->getDoctrine()->getManager()->getRepository('MushkinVitformsBundle:Skill')->find('1');
+//        $user->addSkill($skill);
         $form = $this->createForm(new UserType(), $user);
 
         $form->handleRequest($request);

@@ -1,26 +1,75 @@
 {% extends "MushkinVitformsBundle:Default:index.html.twig" %}
 
 {% block forms %}
-    <p>Добавление нового работника:</p>
+    <h3>Добавление нового работника:</h3><br>
     <div class="col-md-12">
-{#        <form role="form" method="post" action="{{ path('AddUser') }}"> #}
-        {{ form_start(form) }}
-        {{ form_row(form.name) }}
-        {{ form_row(form.secondName) }}
-        {{ form_row(form.age) }}
+        <div class="form-horizontal">
+            <form role="form" method="post">
+          {{ form_errors(form) }}
 
-        <h3>Умения:</h3>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">
+                    {{ form_label(form.name, 'Имя работника:') }}
+                </div>
+                <div class="col-sm-4">
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">
+                    {{ form_label(form.secondName, 'Фамилия работника:') }}
+                </div>
+                <div class="col-sm-4">
+                    {{ form_widget(form.secondName, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">
+                    {{ form_label(form.age, 'Возвраст работника:') }}
+                </div>
+                <div class="col-sm-4">
+                    {{ form_widget(form.age, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+        <h4>Умения:</h4>
         <ul class="skills" data-prototype="{{ form_widget(form.skills.vars.prototype)|e }}" >
             {% for skillfield in form.skills %}
-                <li>{{ form_row(skillfield) }}</li>
+                <li>
+                    {{ form_errors(skillfield) }}
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">
+                            {{ form_label(skillfield.number) }}
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form_widget(skillfield.number, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">
+                            {{ form_label(skillfield.description) }}
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form_widget(skillfield.description, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                </li>
             {% endfor %}
         </ul>
-        {{ form_end(form) }}
-{#        <button type="submit" class="btn btn-default">Сохранить</button>
-        </form>
-#}
-        <br>
-         <a href="{{ path('mushkin_vitforms_homepage') }}">скрыть</a>
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-lg btn-primary">Создать</button>
+            </div>
+                </form>
+        </div>
+        <div class="col-sm-12">
+            <br>
+            <a href="{{ path('mushkin_vitforms_homepage') }}">назад</a>
+            <br><br>
+        </div>
     </div>
+    <br><br>
 {% endblock %}
 

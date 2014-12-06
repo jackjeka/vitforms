@@ -23,9 +23,7 @@ class UserType extends AbstractType
                 'prototype' => true,
                 'by_reference' => false,
                 'allow_delete' => true,
-                ))
-         ->add('save', 'submit', array('label' => 'Create'));
-
+                ));
     }
 
     public function getName()
@@ -37,6 +35,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Mushkin\VitformsBundle\Entity\User',
+            'csrf_protection' => false,
         ));
     }
 }

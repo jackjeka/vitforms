@@ -10,11 +10,18 @@ class SkillType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('number')
-            ->add('description')
-/*            ->add('skillUsers', 'collection', array(
-                'type' => new UserType(),
-            ))*/
+            ->add('number', null, array(
+                'label' => 'Название нового умения: ',
+                'attr' =>array(
+                    'class'=>'form-control col-sm-4'
+                ),
+            ))
+            ->add('description', null, array(
+                'label' => 'Описание нового умения: ',
+                'attr' =>array(
+                    'class'=>'form-control col-sm-4'
+                ),
+            ))
         ;
     }
 
@@ -27,6 +34,7 @@ class SkillType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Mushkin\VitformsBundle\Entity\Skill',
+            'csrf_protection' => false,
         ));
     }
 }

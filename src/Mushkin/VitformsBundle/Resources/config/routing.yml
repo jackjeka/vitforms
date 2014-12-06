@@ -2,10 +2,6 @@ mushkin_vitforms_homepage:
     path:     /
     defaults: { _controller: MushkinVitformsBundle:Default:index }
 
-AddSkill:
-    path:     /AddSkill
-    defaults: { _controller: MushkinVitformsBundle:Default:AddSkill }
-
 AddUser:
     path:     /AddUser
     defaults: { _controller: MushkinVitformsBundle:Default:AddUser }
